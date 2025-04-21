@@ -1,0 +1,19 @@
+<!-- templates/products/product_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Update{% else %}Add{% endif %} Product</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Update{% else %}Add{% endif %} Product</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Update{% else %}Add{% endif %}</button>
+    </form>
+
+    <br>
+    <a href="{% url 'product-list' %}">Back to Product List</a>
+</body>
+</html>
