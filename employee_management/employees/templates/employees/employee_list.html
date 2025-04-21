@@ -1,0 +1,52 @@
+<!-- employees/templates/employees/employee_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee List</h1>
+
+    <!-- Table for displaying employee data -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Phone No</th>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.employee_name }}</td>
+                <td>{{ employee.age }}</td>
+                <td>{{ employee.phone_no }}</td>
+                <td>{{ employee.department }}</td>
+                <td>
+                    <a href="{% url 'employee-update' employee.id %}">Update</a> |
+                    <a href="{% url 'employee-delete' employee.id %}" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Link to add a new employee -->
+    <br>
+    <a href="{% url 'employee-add' %}">Add New Employee</a>
+</body>
+</html>
